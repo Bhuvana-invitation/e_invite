@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Santhosh &amp; Bhuvaneshwari · 25 October 2026</title>
+<meta name="theme-color" content="#8A1B2A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Santhosh &amp; Bhuvaneshwari — 25 October 2026">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Tamil:ital@0;1&family=Catamaran:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Kumkum red ground, sandalwood panels, turmeric linework.
+   The gopuram is the one loud thing; everything else is quiet.
+   ============================================================ */
+:root{
+  --kumkum:#8A1B2A;
+  --kumkum-deep:#6B1120;
+  --kumkum-lift:#A3283A;
+  --sandal:#F5EADA;
+  --sandal-2:#EADCC4;
+  --turmeric:#E3A42C;
+  --gold:#BE8A2A;
+  --leaf:#3E6B45;
+  --ink:#2E2017;
+  --muted:#7A6454;
+
+  --serif:'Tiro Tamil', Georgia, serif;
+  --sans:'Catamaran', system-ui, sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body.held{overflow:hidden;}
+body{
+  position:relative;
+  margin:0; background:var(--kumkum); color:var(--ink);
+  font-family:var(--sans); font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--turmeric); outline-offset:3px;}
+
+/* ---------- the way in ----------
+   The tower already has a doorway at its foot. Tapping walks you
+   through it: the gopuram rushes forward with the opening as its
+   anchor, the dark of the doorway swallows the screen, and the
+   morning is on the other side. No gate, no doors — the entrance
+   is the building's own. */
+#cover{
+  position:fixed; inset:0; z-index:60; cursor:pointer; overflow:hidden;
+  background:linear-gradient(180deg,#1C0D33 0%,#50183F 24%,#9C2C42 48%,
+    #D8632F 70%,#F3A54C 86%,#FBD88C 100%);
+  transition:opacity .75s ease .6s;
+}
+#cover.go{opacity:0; pointer-events:none;}
+/* The tower shouldn't stand in an empty field. A compound wall
+   with its parapet, two subsidiary shrines, and coconut palms —
+   the far ones hazier than the near, so the ground has depth. */
+.surrounds{position:absolute; inset:0; pointer-events:none;}
+.surrounds svg{position:absolute; overflow:visible; fill:currentColor;}
+.wall{
+  position:absolute; left:0; right:0; bottom:26.6%; height:3.4%;
+  background:#3C1430; opacity:.95;
+}
+.wall::before{
+  content:''; position:absolute; left:0; right:0; top:-7px; height:7px;
+  background:repeating-linear-gradient(90deg,#3C1430 0 11px,transparent 11px 26px);
+}
+.shrine{width:9%; bottom:29.4%; color:#3C1430; opacity:.95;}
+.shrine.sl{left:11%;} .shrine.sr{right:11%;}
+.palm.far{color:#5E2440; opacity:.7;}
+.palm.near{color:#260C23;}
+.palm.pl{left:7%;  bottom:27.4%; width:15%;}
+.palm.pr{right:7%; bottom:27.4%; width:16%; transform:scaleX(-1);}
+.palm.nl{left:-3%; bottom:24.5%; width:24%;}
+.palm.nr{right:-3%;bottom:24.5%; width:25%; transform:scaleX(-1);}
+@media(max-width:640px){
+  .palm.pl,.palm.pr{width:20%;}
+  .palm.nl,.palm.nr{width:32%;}
+  .shrine{width:13%;}
+}
+
+#cover .tower{
+  position:absolute; left:50%; bottom:18.8%; translate:-50% 0;
+  width:min(124vmin,780px); height:57%;
+  transform-origin:50% 85%;          /* the lit doorway, not the centre */
+  opacity:.98;
+}
+/* the ground fades up into the horizon rather than cutting it,
+   so the tower isn't standing on a floating shelf */
+#cover .ground{
+  position:absolute; left:0; right:0; bottom:0; height:27%;
+  background:linear-gradient(180deg,
+    rgba(196,104,46,0) 0%, rgba(122,46,42,.72) 22%,
+    #3A1226 58%, #1E0718 100%);
+}
+#cover.go .tower{animation:through 1.45s cubic-bezier(.55,0,.8,.2) forwards;}
+@keyframes through{to{scale:11; opacity:0}}
+/* The disc has to be wider than the tower, or the silhouette
+   covers it completely and all you get is a glow. */
+#cover .glow{
+  position:absolute; left:50%; top:50%; translate:-50% -50%;
+  width:min(170vmin,1150px); aspect-ratio:1; border-radius:50%;
+  background:radial-gradient(circle,rgba(255,240,192,.85),
+    rgba(255,196,94,.4) 45%,transparent 70%);
+}
+#cover .disc{
+  position:absolute; left:50%; top:50%; translate:-50% -50%;
+  width:min(68vmin,460px); aspect-ratio:1; border-radius:50%;
+  background:#FFE49A; opacity:.95;
+}
+.way-in{
+  position:absolute; left:0; right:0; top:10.5%; text-align:center; color:#F6E3B8;
+}
+.way-in .ta{font-family:var(--serif); font-size:clamp(17px,4.6vw,22px); margin:0 0 9px; color:#F7D79A;}
+.way-in .en{font-size:13px; letter-spacing:.18em; color:rgba(243,214,174,.72); margin:0;}
+#cover.go .way-in{opacity:0; transition:opacity .35s;}
+
+/* ---------- hero ---------- */
+#hero{
+  position:relative; min-height:100svh; display:grid; place-items:center;
+  padding:11vh 20px 14vh; text-align:center; overflow:hidden;
+  /* you came through the gateway, so you are inside now: the
+     mandapam, standing before the sanctum */
+  background:linear-gradient(180deg,#140A0C 0%,#241310 58%,#2E1A14 100%);
+}
+.sanctum{
+  position:absolute; left:50%; bottom:0; translate:-50% 0;
+  width:min(150vmin,1180px); height:86%;
+  opacity:0;
+}
+.is-inside .sanctum{animation:settle 2.2s cubic-bezier(.2,.7,.25,1) .1s forwards;}
+@keyframes settle{from{opacity:0; translate:-50% 18px}to{opacity:.95; translate:-50% 0}}
+.sanctum .lit{fill:url(#sanctumlight);}
+
+/* the lamp inside the sanctum, warming the hall */
+.deepam{
+  position:absolute; left:50%; bottom:6%; translate:-50% 0;
+  width:min(86vmin,620px); aspect-ratio:1.25; border-radius:50%;
+  background:radial-gradient(ellipse at 50% 70%,rgba(240,169,60,.26),rgba(217,138,40,.1) 46%,transparent 74%);
+  opacity:0;
+}
+.is-inside .deepam{animation:warm 3s ease .35s forwards;}
+@keyframes warm{to{opacity:1}}
+
+.hero-text{position:relative; z-index:2;}
+/* Back in Tamil, but a phrase rather than a label: "subha
+   thirumanam", the auspicious wedding — what Tamil invitations
+   actually say, where "wedding invitation" was only naming the
+   object you were already holding. No uppercase or wide tracking:
+   Tamil has no capitals and letterspacing pulls its conjuncts
+   apart. The hairlines either side stay. */
+/* The sanctum doorway is lit, and the names stand right in front
+   of it — cream on that glow is nearly the same value. A soft
+   scrim puts the words back on dark without dimming the light. */
+.hero-text::before{
+  content:''; position:absolute; inset:-26% -50vw; z-index:-1; pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(8,4,5,0) 0%, rgba(8,4,5,.55) 16%, rgba(8,4,5,.76) 46%,
+    rgba(8,4,5,.6) 80%, rgba(8,4,5,0) 100%);
+}
+.invite-ta{
+  display:flex; align-items:center; justify-content:center;
+  gap:clamp(10px,2.4vw,16px);
+  font-family:var(--serif); color:#F6D49A;
+  font-size:clamp(17px,4.5vw,23px); letter-spacing:.04em;
+  margin:0 0 clamp(24px,4.6vw,36px);
+}
+.invite-ta::before,.invite-ta::after{
+  content:''; height:1px; width:clamp(18px,8vw,66px);
+  background:linear-gradient(90deg,transparent,rgba(243,201,138,.9));
+}
+.invite-ta::after{background:linear-gradient(90deg,rgba(243,201,138,.9),transparent);}
+.couple{
+  font-family:var(--serif); color:#FBF3E4;
+  font-size:clamp(40px,10.5vw,86px); line-height:1.12; margin:0;
+}
+.amp{
+  display:block; font-family:var(--serif); font-style:italic;
+  color:#F6BE55; font-size:clamp(22px,5vw,38px);
+  margin:clamp(6px,1.4vw,12px) 0;
+}
+.when{
+  margin:clamp(30px,5vw,44px) 0 0; font-size:clamp(15px,4vw,19px);
+  color:#F3E7D4; font-weight:400;
+}
+.where{
+  margin:8px 0 0; font-size:clamp(13px,3.4vw,15px);
+  color:rgba(243,231,212,.82);
+}
+
+.cue{
+  position:absolute; bottom:28px; left:0; right:0; z-index:2;
+  font-size:12px; color:rgba(247,215,154,.6);
+}
+.cue span{display:block; width:1px; height:34px; margin:10px auto 0;
+  background:linear-gradient(180deg,var(--turmeric),transparent);}
+
+/* ---------- shared ---------- */
+.band{position:relative;}
+.wrap{position:relative; z-index:2;}
+.sandal{background:var(--sandal); color:var(--ink);}
+.sandal-2{background:var(--sandal-2); color:var(--ink);}
+.red{background:var(--kumkum); color:var(--sandal);}
+.wrap{max-width:980px; margin:0 auto; padding:clamp(64px,10vw,110px) 22px;}
+.mid{text-align:center;}
+
+h2{
+  font-family:var(--serif); font-weight:400; margin:0;
+  font-size:clamp(26px,6vw,40px); line-height:1.2;
+}
+.red h2{color:var(--sandal);}
+p{line-height:1.75;}
+
+
+/* three kalasams — the finials that stand on the tower's ridge */
+.finials{display:flex; justify-content:center; align-items:flex-end; gap:16px; margin:clamp(20px,4vw,30px) 0;}
+.finials svg{width:17px; height:26px; color:var(--gold); fill:currentColor;}
+.finials svg:nth-child(2){width:23px; height:35px;}
+.red .finials svg{color:var(--turmeric);}
+
+/* ---------- the note ---------- */
+.note{
+  font-family:var(--serif); font-size:clamp(18px,4.4vw,24px);
+  line-height:1.65; max-width:30ch; margin:0 auto; color:var(--ink);
+}
+.note em{font-style:italic; color:var(--kumkum);}
+
+/* ---------- countdown ---------- */
+.clock{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  max-width:520px; margin:clamp(30px,5vw,44px) auto 0;
+}
+.clock div{padding:0 4px;}
+.clock b{
+  display:block; font-family:var(--serif); font-weight:400;
+  font-size:clamp(30px,8.5vw,52px); line-height:1; color:var(--kumkum);
+}
+.clock small{display:block; margin-top:9px; font-size:11.5px; color:var(--muted);}
+.clock div + div{border-left:1px solid rgba(46,32,23,.14);}
+
+/* ---------- the two events ---------- */
+.events{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,3vw,28px); margin-top:clamp(36px,6vw,54px);}
+.event{
+  background:var(--sandal); color:var(--ink);
+  padding:clamp(28px,4.4vw,42px) clamp(20px,3vw,32px) clamp(32px,4.4vw,44px);
+  text-align:center; position:relative;
+}
+/* each panel is a shrine niche, the shape cut into every tier */
+.event{border-radius:48% 48% 3px 3px / 16% 16% 3px 3px;}
+.event::after{
+  content:''; position:absolute; inset:8px; pointer-events:none;
+  border:1px solid rgba(190,138,42,.45);
+  border-radius:47% 47% 2px 2px / 15% 15% 2px 2px;
+}
+.event .ta{font-family:var(--serif); font-size:clamp(21px,5vw,28px); color:var(--kumkum); margin:0;}
+.event .en{font-size:12.5px; letter-spacing:.14em; color:var(--muted); margin:7px 0 0;}
+.event .time{font-family:var(--serif); font-size:clamp(18px,4.4vw,23px); margin:clamp(20px,3vw,28px) 0 0;}
+.event .place{margin:14px 0 0; font-size:14.5px; line-height:1.7; color:var(--muted);}
+.event .place strong{display:block; font-weight:600; color:var(--ink); font-size:15.5px; margin-bottom:3px;}
+.go{
+  display:inline-block; margin-top:clamp(20px,3vw,26px); padding:11px 24px;
+  font-size:12px; letter-spacing:.1em; text-decoration:none;
+  color:var(--kumkum); border:1px solid rgba(190,138,42,.6);
+}
+.go:hover,.go:focus-visible{background:var(--kumkum); color:var(--sandal); border-color:var(--kumkum);}
+
+/* ---------- maps ---------- */
+.maps{display:grid; grid-template-columns:1fr 1fr; gap:clamp(16px,3vw,28px); margin-top:clamp(34px,5vw,48px);}
+.map h3{font-family:var(--serif); font-weight:400; font-size:clamp(18px,4vw,22px); margin:0 0 4px;}
+.map p{margin:0 0 14px; font-size:14px; color:var(--muted);}
+.frame{position:relative; aspect-ratio:4/3; border:1px solid rgba(190,138,42,.5); background:var(--sandal-2);}
+.frame iframe{position:relative; z-index:2; width:100%; height:100%; border:0; display:block;}
+.fallback{
+  position:absolute; inset:0; z-index:1; display:grid; place-content:center;
+  gap:8px; text-align:center; text-decoration:none; padding:16px;
+  font-size:13px; color:var(--muted);
+}
+.fallback b{font-family:var(--serif); font-weight:400; font-size:15px; color:var(--ink);}
+.getting{max-width:48ch; margin:clamp(32px,5vw,44px) auto 0; text-align:center; font-size:15px; color:var(--muted);}
+
+/* ---------- close ---------- */
+#close{background:var(--kumkum-deep); color:var(--sandal); text-align:center;}
+#close .couple{font-size:clamp(30px,8vw,54px);}
+.unbroken{
+  font-family:var(--serif); font-style:italic;
+  font-size:clamp(15px,3.8vw,18px); color:rgba(247,215,154,.72);
+  margin:clamp(30px,5vw,40px) 0 0;
+}
+.compliments{margin:clamp(26px,4vw,34px) 0 0; font-size:13.5px; color:rgba(245,234,218,.55); line-height:1.9;}
+.compliments b{display:block; font-family:var(--serif); font-weight:400; font-size:17px; color:var(--turmeric);}
+
+@media(max-width:720px){
+  .events,.maps{grid-template-columns:1fr;}
+}
+@media(max-width:400px){
+  .clock b{font-size:27px;}
+  .clock small{font-size:10px;}
+  .wrap{padding:56px 18px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important; transition-duration:.01ms!important;}
+  .sanctum,.deepam{opacity:.95;}
+  #cover.go .tower{animation:none; opacity:0;}
+  .sun{opacity:1;}
+}
+</style>
+</head>
+<body class="held">
+
+<div id="cover" role="button" tabindex="0" aria-label="Enter the invitation">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="disc" aria-hidden="true"></div>
+  <div class="ground" aria-hidden="true"></div>
+  <div class="surrounds" aria-hidden="true">
+    <svg class="palm far pl" viewBox="0 0 220 320"></svg>
+    <svg class="palm far pr" viewBox="0 0 220 320"></svg>
+    <div class="wall"></div>
+    <svg class="shrine sl" viewBox="0 0 80 90"></svg>
+    <svg class="shrine sr" viewBox="0 0 80 90"></svg>
+    <svg class="palm near nl" viewBox="0 0 220 320"></svg>
+    <svg class="palm near nr" viewBox="0 0 220 320"></svg>
+  </div>
+  <svg class="tower" viewBox="0 0 620 560" preserveAspectRatio="xMidYMax meet" aria-hidden="true"></svg>
+  <div class="way-in">
+    <p class="ta">அன்புடன் அழைக்கிறோம்</p>
+    <p class="en">tap to step inside</p>
+  </div>
+</div>
+
+<header id="hero">
+  <div class="deepam" aria-hidden="true"></div>
+  <svg class="sanctum" viewBox="0 0 760 620" preserveAspectRatio="xMidYMax meet" aria-hidden="true"></svg>
+  <div class="hero-text">
+    <p class="invite-ta">சுப திருமணம்</p>
+    <h1 class="couple">Santhosh<span class="amp">&amp;</span>Bhuvaneshwari</h1>
+    <p class="when">Sunday, 25 October 2026</p>
+    <p class="where">Muhurtham at 7:35 in the morning</p>
+  </div>
+  <p class="cue">scroll<span></span></p>
+</header>
+
+<section class="band sandal">
+  <div class="wrap mid">
+    <p class="note">The muhurtham is early &mdash; a little after half past seven,
+      while it is still cool. Come for it if you can, and stay for
+      the morning.</p>
+  </div>
+</section>
+
+<section class="band sandal-2">
+  <div class="wrap mid">
+    <h2>The muhurtham is in</h2>
+    <div class="finials"></div>
+    <div class="clock">
+      <div><b id="cd">00</b><small>days</small></div>
+      <div><b id="ch">00</b><small>hours</small></div>
+      <div><b id="cm">00</b><small>minutes</small></div>
+      <div><b id="cs">00</b><small>seconds</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="band red">
+  <div class="wrap mid">
+    <h2>Two gatherings, one morning</h2>
+    <div class="finials"></div>
+
+    <div class="events">
+      <article class="event">
+        <p class="ta">முகூர்த்தம்</p>
+        <p class="en">muhurtham</p>
+        <p class="time">7:35 &ndash; 9:00 AM</p>
+        <p class="place">
+          <strong>Shri Bhuvaneswari Amman Temple</strong>
+          Thailavaram, Potheri
+        </p>
+        <a class="go" href="https://www.google.com/maps/search/?api=1&amp;query=12.8267488%2C80.0409888&amp;query_place_id=ChIJgwU8aBL3UjoR69I19yJ_S4g" target="_blank" rel="noopener">Open in Maps</a>
+      </article>
+
+      <article class="event">
+        <p class="ta">வரவேற்பு</p>
+        <p class="en">reception</p>
+        <p class="time">11:00 AM onwards</p>
+        <p class="place">
+          <strong>SSK Mahal</strong>
+          No. 5 Bharathidasan Street,<br>Nandhivaram, Guduvancheri
+        </p>
+        <a class="go" href="https://www.google.com/maps/search/?api=1&amp;query=12.843544%2C80.0577851&amp;query_place_id=ChIJU2HPFxL3UjoRxZglN9hvyFU" target="_blank" rel="noopener">Open in Maps</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band sandal" id="finding">
+  <div class="wrap">
+    <div class="mid"><h2>Finding both</h2>
+      <div class="finials"></div>
+    </div>
+
+    <div class="maps">
+      <div class="map">
+        <h3>Shri Bhuvaneswari Amman Temple</h3>
+        <p>On the GST road at Potheri, opposite Valliammai College.</p>
+        <div class="frame">
+          <a class="fallback" href="https://www.google.com/maps/search/?api=1&amp;query=12.8267488%2C80.0409888" target="_blank" rel="noopener">
+            <b>Shri Bhuvaneswari Amman Temple</b>Open in Google Maps</a>
+          <iframe loading="lazy" title="Temple on the map"
+            src="https://www.google.com/maps?q=12.8267488,80.0409888&amp;z=16&amp;output=embed"></iframe>
+        </div>
+      </div>
+
+      <div class="map">
+        <h3>SSK Mahal</h3>
+        <p>Near Guduvancheri station. Parking is on the open plot beside it.</p>
+        <div class="frame">
+          <a class="fallback" href="https://www.google.com/maps/search/?api=1&amp;query=12.843544%2C80.0577851" target="_blank" rel="noopener">
+            <b>SSK Mahal</b>Open in Google Maps</a>
+          <iframe loading="lazy" title="SSK Mahal on the map"
+            src="https://www.google.com/maps?q=12.843544,80.0577851&amp;z=16&amp;output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <p class="getting">The temple and the hall are about three kilometres apart, roughly
+      ten minutes by road, with two hours between the muhurtham and the reception.</p>
+  </div>
+</section>
+
+<section class="band" id="close">
+  <div class="wrap mid">
+    <h1 class="couple">Santhosh<span class="amp">&amp;</span>Bhuvaneshwari</h1>
+    <p class="unbroken">Two families, one morning, and the whole day after it.</p>
+    <p class="compliments"><b>With best compliments from</b>Friends &amp; Relatives</p>
+  </div>
+</section>
+
+<script>
+/* ---------- the gopuram ----------
+   Modelled rather than outlined: stone masses lit from the left,
+   deep shadow in the soffit under every cornice, and a tier of
+   painted figures standing in their niches. Drawn from the crown
+   downward so each tier's parapet sits in front of the wall above,
+   which is how the real thing stacks. */
+const STONE={hi:'#F0D7B0',mid:'#D3AD83',lo:'#A87B57',sh:'#7A5339',deep:'#45291C'};
+const PAINT=['#AE4038','#35665F','#2B5680','#8E6128','#5F4076','#9B5A2B'];
+const f1=n=>n.toFixed(1);
+
+function figure(x,y,h,col){
+  const w=h*0.32;
+  return '<path d="M'+f1(x-w/2)+' '+f1(y)+' L'+f1(x-w*0.40)+' '+f1(y-h*0.60)+
+         ' L'+f1(x+w*0.40)+' '+f1(y-h*0.60)+' L'+f1(x+w/2)+' '+f1(y)+'Z" fill="'+col+'"/>'+
+         '<circle cx="'+f1(x)+'" cy="'+f1(y-h*0.74)+'" r="'+f1(h*0.15)+'" fill="'+col+'"/>'+
+         '<path d="M'+f1(x-w*0.62)+' '+f1(y-h*0.50)+' L'+f1(x-w*0.40)+' '+f1(y-h*0.20)+
+         '" stroke="'+col+'" stroke-width="'+f1(h*0.07)+'" fill="none" stroke-linecap="round"/>'+
+         '<path d="M'+f1(x+w*0.62)+' '+f1(y-h*0.50)+' L'+f1(x+w*0.40)+' '+f1(y-h*0.20)+
+         '" stroke="'+col+'" stroke-width="'+f1(h*0.07)+'" fill="none" stroke-linecap="round"/>';
+}
+
+function kalasam(kx,ky,s,fill){
+  return '<path d="M'+f1(kx-4.5*s)+' '+f1(ky)+' L'+f1(kx+4.5*s)+' '+f1(ky)+
+         ' L'+f1(kx+3*s)+' '+f1(ky-3.5*s)+' Q'+f1(kx+6.5*s)+' '+f1(ky-8*s)+' '+f1(kx)+' '+f1(ky-15*s)+
+         ' Q'+f1(kx-6.5*s)+' '+f1(ky-8*s)+' '+f1(kx-3*s)+' '+f1(ky-3.5*s)+'Z" fill="'+fill+'"/>'+
+         '<rect x="'+f1(kx-1.2*s)+'" y="'+f1(ky-22*s)+'" width="'+f1(2.4*s)+
+         '" height="'+f1(8*s)+'" fill="'+fill+'"/>';
+}
+
+/* coconut palms and wayside shrines, drawn once and reused */
+(function surrounds(){
+  const pal=document.querySelectorAll('.palm');
+  if(pal.length){
+    const bx=110, by=320, tx=92, ty=70;
+    let d='<path d="M'+bx+' '+by+' Q'+(bx-6)+' '+((by+ty)/2)+' '+tx+' '+ty+
+          '" stroke="currentColor" stroke-width="9" fill="none" stroke-linecap="round"/>';
+    for(let i=0;i<7;i++){
+      const a=(-168+i*56)*Math.PI/180;
+      const L=(i===0||i===6)?96:((i===1||i===5)?118:134);
+      const ex=tx+Math.cos(a)*L, ey=ty+Math.sin(a)*L*0.62+L*0.16;
+      const mx=tx+Math.cos(a)*L*0.55, my=ty+Math.sin(a)*L*0.30;
+      d+='<path d="M'+tx+' '+ty+' Q'+f1(mx)+' '+f1(my-L*0.14)+' '+f1(ex)+' '+f1(ey)+
+         ' Q'+f1(mx)+' '+f1(my+L*0.10)+' '+tx+' '+ty+'Z"/>';
+    }
+    d+='<circle cx="'+tx+'" cy="'+ty+'" r="7"/>';
+    pal.forEach(el=>el.innerHTML=d);
+  }
+  const shr=document.querySelectorAll('.shrine');
+  if(shr.length){
+    const x=40,b=86,w=30,h=62;
+    const d='<path d="M'+(x-w)+' '+b+' L'+(x-w*0.78)+' '+f1(b-h*0.62)+
+      ' L'+(x-w*0.5)+' '+f1(b-h*0.62)+' L'+(x-w*0.42)+' '+(b-h)+
+      ' L'+(x+w*0.42)+' '+(b-h)+' L'+(x+w*0.5)+' '+f1(b-h*0.62)+
+      ' L'+(x+w*0.78)+' '+f1(b-h*0.62)+' L'+(x+w)+' '+b+'Z"/>'+
+      '<path d="M'+x+' '+(b-h)+' L'+x+' '+f1(b-h*1.38)+'" stroke="currentColor" stroke-width="3"/>';
+    shr.forEach(el=>el.innerHTML=d);
+  }
+})();
+
+(function tower(){
+  /* A silhouette against the sunrise, with a real doorway at its
+     foot: jambs, a lintel and two steps, outlined in the light
+     coming from inside. That outline is what makes it something
+     you step through rather than a bright patch on a shape. */
+  const svg=document.querySelector('#cover .tower'); if(!svg) return;
+  const W=620,H=560,cx=W/2,TIERS=9,P=1.46;
+  const yBase=H-22, TOWER_H=H-44, topY=yBase-TOWER_H;
+  const hwb=W*0.235, hwt=W*0.075;
+  const baseH=TOWER_H*0.235, yBaseTop=yBase-baseH;
+  const hw=t=>hwt+(hwb-hwt)*Math.pow(1-t,P);
+  const yy=t=>yBaseTop+(topY-yBaseTop)*t;
+
+  /* the foot spreads into a plinth, so the tower stands on the
+     ground instead of hovering above it */
+  const L=[[cx-hwb*1.28,yBase+12],[cx-hwb*1.28,yBase+4],
+           [cx-hwb*1.15,yBase+4],[cx-hwb*1.15,yBase-4],
+           [cx-hwb*1.09,yBase-4],[cx-hwb*1.09,yBaseTop+TOWER_H*0.020],[cx-hwb,yBaseTop]];
+  for(let i=0;i<TIERS;i++){
+    const yb=yy(i/TIERS), yt=yy((i+1)/TIERS);
+    const w=hw(i/TIERS), wn=hw((i+1)/TIERS);
+    const band=yb-yt, wallTop=yt+band*0.30, fl=w*0.085, ch=band*0.14;
+    L.push([cx-w,wallTop],[cx-w-fl,wallTop],[cx-w-fl*0.85,wallTop-ch],
+           [cx-wn,wallTop-ch],[cx-wn,yt]);
+  }
+  const yT=yy(1), wT=hw(1);
+  L.push([cx-wT-W*0.013,yT]);
+  const side=pts=>pts.map(q=>f1(q[0])+','+f1(q[1])).join(' L');
+  const sil='M'+side(L)+
+    ' Q'+f1(cx)+','+f1(yT-TOWER_H*0.13)+' '+f1(cx+wT+W*0.013)+','+f1(yT)+
+    ' L'+side(L.slice().reverse().map(q=>[2*cx-q[0],q[1]]))+' Z';
+
+  let kal='';
+  const ridge=yT-TOWER_H*0.082;
+  for(let k=0;k<7;k++){
+    const u=k/6, kx=cx-wT*0.84+wT*1.68*u, ky=ridge+(TOWER_H*0.034)*Math.abs(u-0.5)*2;
+    const sc=(k===0||k===6)?0.5:((k===1||k===5)?0.65:((k===3)?1.2:0.82));
+    kal+='<path d="M'+f1(kx-5*sc)+' '+f1(ky+5)+' L'+f1(kx+5*sc)+' '+f1(ky+5)+
+         ' L'+f1(kx+3.2*sc)+' '+f1(ky-3.5*sc)+' Q'+f1(kx+6.5*sc)+' '+f1(ky-8*sc)+' '+f1(kx)+' '+
+         f1(ky-16*sc)+' Q'+f1(kx-6.5*sc)+' '+f1(ky-8*sc)+' '+f1(kx-3.2*sc)+' '+f1(ky-3.5*sc)+'Z"/>'+
+         '<rect x="'+f1(kx-1.2*sc)+'" y="'+f1(ky-23*sc)+'" width="'+f1(2.4*sc)+
+         '" height="'+f1(9*sc)+'"/>';
+  }
+
+  const dw=hwb*0.30, dh=baseH*0.86, dy=yBase-dh, jw=dw*0.17;
+  const door=
+    '<rect x="'+f1(cx-dw)+'" y="'+f1(dy)+'" width="'+f1(dw*2)+'" height="'+f1(dh)+
+      '" fill="url(#doorlight)"/>'+
+    '<g fill="none" stroke="#FFD894" stroke-width="2.4" stroke-linejoin="round">'+
+      '<path d="M'+f1(cx-dw-jw)+' '+f1(yBase)+' L'+f1(cx-dw-jw)+' '+f1(dy-jw*1.5)+
+        ' L'+f1(cx+dw+jw)+' '+f1(dy-jw*1.5)+' L'+f1(cx+dw+jw)+' '+f1(yBase)+'"/>'+
+      '<path d="M'+f1(cx-dw)+' '+f1(yBase)+' L'+f1(cx-dw)+' '+f1(dy)+
+        ' L'+f1(cx+dw)+' '+f1(dy)+' L'+f1(cx+dw)+' '+f1(yBase)+'"/>'+
+      '<path d="M'+f1(cx-dw-jw*2.1)+' '+f1(dy-jw*1.5)+' L'+f1(cx+dw+jw*2.1)+' '+f1(dy-jw*1.5)+'"/>'+
+      '<path d="M'+f1(cx-dw-jw*2.1)+' '+f1(dy-jw*3.0)+' L'+f1(cx+dw+jw*2.1)+' '+f1(dy-jw*3.0)+'"/>'+
+    '</g>'+
+    '<g fill="none" stroke="#FFD894" stroke-width="2" stroke-opacity=".75">'+
+      '<path d="M'+f1(cx-dw*1.3)+' '+f1(yBase+5)+' L'+f1(cx+dw*1.3)+' '+f1(yBase+5)+'"/>'+
+      '<path d="M'+f1(cx-dw*1.6)+' '+f1(yBase+13)+' L'+f1(cx+dw*1.6)+' '+f1(yBase+13)+'"/></g>';
+
+  let birds='';
+  [[0.10,0.09,9],[0.19,0.15,7],[0.04,0.19,6],[0.27,0.11,6],
+   [0.86,0.07,8],[0.94,0.14,6],[0.76,0.17,5]]
+    .forEach(([bx,by,bs])=>{
+      const x=W*bx, y=H*by;
+      birds+='<path d="M'+f1(x-bs)+' '+f1(y)+' Q'+f1(x-bs*0.5)+' '+f1(y-bs*0.6)+' '+f1(x)+' '+f1(y)+
+             ' Q'+f1(x+bs*0.5)+' '+f1(y-bs*0.6)+' '+f1(x+bs)+' '+f1(y)+
+             '" fill="none" stroke="#3A1430" stroke-width="1.5" stroke-linecap="round" opacity=".45"/>';
+    });
+
+  svg.innerHTML='<defs><linearGradient id="doorlight" x1="0" y1="1" x2="0" y2="0">'+
+      '<stop offset="0%" stop-color="#FFEFC2"/><stop offset="55%" stop-color="#F3AE46"/>'+
+      '<stop offset="100%" stop-color="#C96A22"/></linearGradient></defs>'+
+    birds+
+    '<ellipse cx="'+f1(cx)+'" cy="'+f1(yBase+16)+'" rx="'+f1(hwb*2.1)+
+      '" ry="13" fill="#1E0718" opacity=".45"/>'+
+    '<g fill="#260C23"><path d="'+sil+'"/>'+kal+'</g>'+door;
+})();
+
+/* ---------- inside: the mandapam, before the sanctum ---------- */
+(function sanctum(){
+  const svg=document.querySelector('.sanctum'); if(!svg) return;
+  const W=760,H=620,cx=W/2,floor=H*0.90,top=H*0.17,pw=W*0.085;
+  const o=[];
+
+  function pillar(x,w){
+    const s=[], sTop=top+H*0.085, sBot=floor-H*0.095;
+    s.push('<rect x="'+f1(x-w*0.72)+'" y="'+f1(floor-H*0.055)+'" width="'+f1(w*1.44)+
+      '" height="'+f1(H*0.055)+'" fill="url(#pier)"/>');
+    s.push('<rect x="'+f1(x-w*0.58)+'" y="'+f1(floor-H*0.095)+'" width="'+f1(w*1.16)+
+      '" height="'+f1(H*0.040)+'" fill="url(#pier)"/>');
+    s.push('<rect x="'+f1(x-w/2)+'" y="'+f1(sTop)+'" width="'+f1(w)+'" height="'+f1(sBot-sTop)+
+      '" fill="url(#pier)"/>');
+    [0.30,0.52].forEach(fr=>{
+      const yb=sBot-(sBot-sTop)*fr;
+      s.push('<rect x="'+f1(x-w*0.54)+'" y="'+f1(yb-9)+'" width="'+f1(w*1.08)+
+        '" height="9" fill="'+STONE.sh+'" opacity=".8"/>');
+    });
+    s.push('<path d="M'+f1(x-w*0.82)+' '+f1(sTop)+' L'+f1(x-w*0.52)+' '+f1(top+H*0.040)+
+      ' L'+f1(x+w*0.52)+' '+f1(top+H*0.040)+' L'+f1(x+w*0.82)+' '+f1(sTop)+
+      ' Q'+f1(x)+' '+f1(top+H*0.122)+' '+f1(x-w*0.82)+' '+f1(sTop)+'Z" fill="url(#pier)"/>');
+    return s.join('');
+  }
+  o.push(pillar(cx-W*0.315,pw), pillar(cx+W*0.315,pw));
+
+  const by=top+H*0.040;
+  o.push('<rect x="'+f1(cx-W*0.41)+'" y="'+f1(by-H*0.055)+'" width="'+f1(W*0.82)+
+    '" height="'+f1(H*0.055)+'" fill="url(#pier)"/>');
+  o.push('<rect x="'+f1(cx-W*0.41)+'" y="'+f1(by-8)+'" width="'+f1(W*0.82)+
+    '" height="8" fill="'+STONE.deep+'" opacity=".45"/>');
+  const yh=by-H*0.055, hh=H*0.055;
+  for(let k=0;k<9;k++){
+    const u=(k+0.5)/9, x=cx-W*0.41+W*0.82*u, cw=W*0.82/9*0.72;
+    if(k%2===0){
+      o.push('<path d="M'+f1(x-cw/2)+' '+f1(yh)+' L'+f1(x-cw/2)+' '+f1(yh-hh*0.46)+
+        ' L'+f1(x)+' '+f1(yh-hh)+' L'+f1(x+cw/2)+' '+f1(yh-hh*0.46)+' L'+f1(x+cw/2)+' '+f1(yh)+
+        'Z" fill="'+STONE.mid+'"/>');
+    }else{
+      o.push('<path d="M'+f1(x-cw*0.56)+' '+f1(yh)+' L'+f1(x-cw*0.56)+' '+f1(yh-hh*0.34)+
+        ' Q'+f1(x)+' '+f1(yh-hh)+' '+f1(x+cw*0.56)+' '+f1(yh-hh*0.34)+' L'+f1(x+cw*0.56)+' '+
+        f1(yh)+'Z" fill="'+STONE.lo+'"/>');
+    }
+  }
+
+  const dw=W*0.115, dtop=H*0.33;
+  o.push('<rect x="'+f1(cx-dw*1.34)+'" y="'+f1(dtop-H*0.030)+'" width="'+f1(dw*2.68)+
+    '" height="'+f1(H*0.030)+'" fill="url(#pier)"/>');
+  o.push('<rect x="'+f1(cx-dw*1.34)+'" y="'+f1(dtop)+'" width="'+f1(dw*0.34)+
+    '" height="'+f1(floor-dtop)+'" fill="url(#pier)"/>');
+  o.push('<rect x="'+f1(cx+dw)+'" y="'+f1(dtop)+'" width="'+f1(dw*0.34)+
+    '" height="'+f1(floor-dtop)+'" fill="url(#pier)"/>');
+  [-1,1].forEach(sg=>{
+    const bx=cx+sg*W*0.185;
+    o.push('<rect x="'+f1(bx-1.6)+'" y="'+f1(by)+'" width="3.2" height="'+f1(H*0.072)+
+      '" fill="'+STONE.lo+'"/>');
+    o.push('<path d="M'+f1(bx-14)+' '+f1(by+H*0.118)+' Q'+f1(bx-14)+' '+f1(by+H*0.074)+' '+
+      f1(bx)+' '+f1(by+H*0.070)+' Q'+f1(bx+14)+' '+f1(by+H*0.074)+' '+f1(bx+14)+' '+
+      f1(by+H*0.118)+'Z" fill="#C9933A"/>');
+    o.push('<rect x="'+f1(bx-2)+'" y="'+f1(by+H*0.118)+'" width="4" height="'+f1(H*0.022)+
+      '" fill="#C9933A"/>');
+  });
+  o.push('<rect x="0" y="'+f1(floor)+'" width="'+W+'" height="'+f1(H-floor)+'" fill="#20110E"/>');
+  o.push('<rect x="0" y="'+f1(floor)+'" width="'+W+'" height="4" fill="'+STONE.sh+'" opacity=".7"/>');
+
+  svg.innerHTML='<defs>'+
+    '<linearGradient id="pier" x1="0" y1="0" x2="1" y2="0">'+
+      '<stop offset="0%" stop-color="'+STONE.sh+'"/><stop offset="38%" stop-color="'+STONE.mid+'"/>'+
+      '<stop offset="70%" stop-color="'+STONE.hi+'"/><stop offset="100%" stop-color="'+STONE.lo+'"/></linearGradient>'+
+    '<linearGradient id="sanctumlight" x1="0" y1="1" x2="0" y2="0">'+
+      '<stop offset="0%" stop-color="#FFD98C"/><stop offset="50%" stop-color="#E0962F"/>'+
+      '<stop offset="100%" stop-color="#8A3F14"/></linearGradient></defs>'+
+    '<rect class="lit" x="'+f1(cx-dw)+'" y="'+f1(dtop)+'" width="'+f1(dw*2)+
+      '" height="'+f1(floor-dtop)+'"/>'+o.join('');
+})();
+
+/* the kalasam again, small, wherever a divider is wanted */
+(function finials(){
+  document.querySelectorAll('.finials').forEach(row=>{
+    row.innerHTML=[0,1,2].map(()=>
+      '<svg viewBox="0 0 34 52" aria-hidden="true">'+kalasam(17,48,1.9,'currentColor')+'</svg>').join('');
+  });
+})();
+
+/* ---------- stepping through ---------- */
+(function enter(){
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  const cover=document.getElementById('cover');
+  function go(){
+    if(cover.classList.contains('go')) return;
+    cover.classList.add('go');
+    document.body.classList.remove('held');
+    const h=document.documentElement, prev=h.style.scrollBehavior;
+    h.style.scrollBehavior='auto'; window.scrollTo(0,0); h.style.scrollBehavior=prev;
+    setTimeout(()=>document.getElementById('hero').classList.add('is-inside'),560);
+    setTimeout(()=>cover.remove(),2200);
+  }
+  cover.addEventListener('click',go);
+  cover.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); }
+  });
+})();
+
+/* ---------- countdown to the muhurtham ---------- */
+(function countdown(){
+  const target=new Date('2026-10-25T07:35:00+05:30').getTime();
+  const el={d:'cd',h:'ch',m:'cm',s:'cs'};
+  const pad=n=>String(Math.max(0,n)).padStart(2,'0');
+  function tick(){
+    const diff=target-Date.now();
+    if(diff<=0){
+      ['cd','ch','cm','cs'].forEach(id=>document.getElementById(id).textContent='00');
+      return;
+    }
+    document.getElementById(el.d).textContent=pad(Math.floor(diff/864e5));
+    document.getElementById(el.h).textContent=pad(Math.floor(diff/36e5)%24);
+    document.getElementById(el.m).textContent=pad(Math.floor(diff/6e4)%60);
+    document.getElementById(el.s).textContent=pad(Math.floor(diff/1e3)%60);
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
